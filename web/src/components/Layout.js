@@ -5,7 +5,7 @@ const Layout = () => {
     <>
       <div className="App">
         <header>header</header>
-        <div class="container">
+        <div className="container">
           <nav>
             <ul>
               <li>
