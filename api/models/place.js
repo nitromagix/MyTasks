@@ -3,7 +3,7 @@ const { Model } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
 
-  class Task extends Model {
+  class Place extends Model {
 
 
     // static associate({ Comment }) {
@@ -12,20 +12,23 @@ module.exports = (sequelize, DataTypes) => {
 
   };
 
-  Task.init({
-    taskId: {
+  Place.init({
+    placeId: {
       type: DataTypes.SMALLINT,
       primaryKey: true,
       autoIncrement: true
 
     },
     name: DataTypes.STRING,
-    description: DataTypes.STRING,
+    city: DataTypes.STRING,
+    state: DataTypes.STRING,
+    cuisines: DataTypes.STRING,
+    pic: DataTypes.STRING,
+    founded: DataTypes.INTEGER
   }, {
     sequelize,
     underscored: true,
-    modelName: 'Task',
+    modelName: 'Place',
   });
-
-  return Task;
+  return Place;
 };

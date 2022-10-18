@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const db = require("../models");
+const db = require("../models/index.js.mong_bak");
 // const Profile_Seed = require("../models/data/profiles_seed");
 // const PortfolioSeed = require("../models/data/portfolio_seed");
 

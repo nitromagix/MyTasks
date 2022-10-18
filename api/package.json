@@ -1,22 +1,29 @@
 {
-  "name": "api",
+  "name": "mytasks-api",
   "version": "1.0.0",
   "description": "MyTasks api",
   "main": "index.js",
   "engines": {
-     "node": "v18.2.0"
+    "node": "v16.14.0"
   },
   "scripts": {
-     "test": "echo \"Error: no test specified\" && exit 1",
-     "start": "node index.js"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
   },
   "dependencies": {
+    "bcrypt": "^5.1.0",
+    "body-parser": "^1.20.1",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "ejs": "^3.1.8",
     "express": "^4.18.2",
+    "json-web-token": "^3.2.0",
     "method-override": "^3.0.0",
     "mongoose": "^6.6.5",
-    "nodemon": "^2.0.20"
+    "nodemon": "^2.0.20",
+    "pg": "^8.8.0",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^6.25.2",
+    "sequelize-cli": "^6.5.1"
   }
 }
