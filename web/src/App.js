@@ -1,39 +1,26 @@
-import React from "react";
-import { Counter } from "./features/counter/Counter";
 import "./App.css";
+import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import CurrentUserProvider from "./contexts/CurrentUser";
+import Layout from "./components/Layout";
+import Home from "./components/Home";
+import LoginForm from "./components/LoginForm";
+import SignUpForm from "./components/SignUpForm";
 
 function App() {
   return (
-    <div className="App">
-      <header>header</header>
-      <div class="container">
-        <nav>nav</nav>
-        <main>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum.
-          <br />
-          <br />
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum.
-          {/* <br />
-          <a href="#">click me</a> */}
-          <br />
-          <Counter />
-        </main>
-        <aside>aside</aside>
-        <footer>footer</footer>
-      </div>
-    </div>
+    <CurrentUserProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<Home />} />
+            <Route path="login" element={<LoginForm />} />
+            <Route path="signup" element={<SignUpForm />} />
+            {/* <Route path="*" element={<NoPage />} /> */}
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </CurrentUserProvider>
   );
 }
 
