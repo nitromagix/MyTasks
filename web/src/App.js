@@ -14,10 +14,10 @@ function App() {
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<Dashboard />} />
-            <Route path="login" element={<LoginForm />} />
-            <Route path="signup" element={<SignUpForm />} />
             {/* <Route path="*" element={<NoPage />} /> */}
           </Route>
+          <Route path="login" element={<LoginForm />} />
+          <Route path="signup" element={<SignUpForm />} />
         </Routes>
       </BrowserRouter>
     </CurrentUserProvider>

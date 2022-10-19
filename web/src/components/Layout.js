@@ -1,24 +1,19 @@
-import { Outlet, Link } from "react-router-dom";
+import { useContext, Fragment } from "react";
+import { Outlet, useNavigate, Navigate } from "react-router-dom";
+import { CurrentUser } from "../contexts/CurrentUser";
+import { trace } from "../nmx";
+import Header from "./Header";
+import Nav from "./Nav";
 
 const Layout = () => {
-  return (
-    <>
+  const userContext = useContext(CurrentUser);
+
+  return userContext.currentUser && userContext.currentUser.role === "reviewer" ? (
+    <Fragment>
       <div className="App">
-        <header>header</header>
+        <Header currentUser={userContext.currentUser} />
         <div className="container">
-          <nav>
-            <ul>
-              <li>
-                <Link to="/">Home</Link>
-              </li>
-              <li>
-                <Link to="/login">Login</Link>
-              </li>
-              <li>
-                <Link to="/signup">Signup</Link>
-              </li>
-            </ul>
-          </nav>
+          <Nav/>
           <main>
             <Outlet />
           </main>
@@ -26,8 +21,8 @@ const Layout = () => {
           <footer>footer</footer>
         </div>
       </div>
-    </>
-  );
+    </Fragment>
+  ) : (<Navigate to={"/login"} />);
 };
 
 export default Layout;
