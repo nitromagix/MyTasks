@@ -1,7 +1,12 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { CurrentUser } from "../contexts/CurrentUser";
 
 const Nav = () => {
-  return (
+  const userContext = useContext(CurrentUser);
+  const user = userContext.currentUser;
+
+  return user && user.role === "reviewer" ? (
     <nav>
       <ul>
         <li>
@@ -15,6 +20,8 @@ const Nav = () => {
         </li>
       </ul>
     </nav>
+  ) : (
+    <nav></nav>
   );
 };
 export default Nav;

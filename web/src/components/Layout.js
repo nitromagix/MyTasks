@@ -1,19 +1,16 @@
-import { useContext, Fragment } from "react";
-import { Outlet, useNavigate, Navigate } from "react-router-dom";
-import { CurrentUser } from "../contexts/CurrentUser";
+import { Fragment } from "react";
+import { Outlet } from "react-router-dom";
 import { trace } from "../nmx";
 import Header from "./Header";
 import Nav from "./Nav";
 
 const Layout = () => {
-  const userContext = useContext(CurrentUser);
-
-  return userContext.currentUser && userContext.currentUser.role === "reviewer" ? (
+  return (
     <Fragment>
       <div className="App">
-        <Header currentUser={userContext.currentUser} />
+        <Header />
         <div className="container">
-          <Nav/>
+          <Nav />
           <main>
             <Outlet />
           </main>
@@ -22,7 +19,7 @@ const Layout = () => {
         </div>
       </div>
     </Fragment>
-  ) : (<Navigate to={"/login"} />);
+  );
 };
 
 export default Layout;

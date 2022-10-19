@@ -1,14 +1,21 @@
-import { Fragment } from "react";
+import { Fragment, useContext } from "react";
+import { Link } from "react-router-dom";
+import { CurrentUser } from "../contexts/CurrentUser";
 import { trace } from "../nmx";
 
-const Header = (props) => {
-  const user = props.currentUser;
+const Header = () => {
+  const userContext = useContext(CurrentUser);
+  const user = userContext.currentUser;
 
-  return user ? (
+  return user && user.role === "reviewer" ? (
     <Fragment>
       <header>Hello, {user.firstName}</header>
     </Fragment>
-  ) : null;
+  ) : (
+    <Fragment>
+      <header><Link to={"/login"}>Log-in</Link></header>
+    </Fragment>
+  );
 };
 
 export default Header;

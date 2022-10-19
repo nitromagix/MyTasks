@@ -15,9 +15,9 @@ function App() {
           <Route path="/" element={<Layout />}>
             <Route index element={<Dashboard />} />
             {/* <Route path="*" element={<NoPage />} /> */}
+            <Route path="login" element={<LoginForm />} />
+            <Route path="signup" element={<SignUpForm />} />
           </Route>
-          <Route path="login" element={<LoginForm />} />
-          <Route path="signup" element={<SignUpForm />} />
         </Routes>
       </BrowserRouter>
     </CurrentUserProvider>
