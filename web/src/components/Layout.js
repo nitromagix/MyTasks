@@ -1,6 +1,8 @@
 import { Fragment } from "react";
 import { Outlet } from "react-router-dom";
 import { trace } from "../nmx";
+import Aside from "./Aside";
+import Footer from "./Footer";
 import Header from "./Header";
 import Nav from "./Nav";
 
@@ -14,8 +16,8 @@ const Layout = () => {
           <main>
             <Outlet />
           </main>
-          <aside>aside</aside>
-          <footer>footer</footer>
+          <Aside/>
+          <Footer/>
         </div>
       </div>
     </Fragment>

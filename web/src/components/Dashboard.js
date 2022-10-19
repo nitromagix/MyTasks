@@ -5,7 +5,7 @@ const Dashboard = () => {
   return (
     <Fragment>
       <h1>Dashboard</h1>
-      <div style={{width:450}}></div>
+      <div style={{width:350}}></div>
     </Fragment>
   );
 };
