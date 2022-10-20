@@ -8,7 +8,9 @@ const Aside = () => {
 
   return user && user.role === "reviewer" ? (
     <Fragment>
-      <aside>contextual controls here</aside>
+      <aside>
+        <div style={{width:200,height:200}}>contextual controls here</div>
+      </aside>
     </Fragment>
   ) : (
     <Fragment>
