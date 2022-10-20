@@ -13,9 +13,9 @@ const Dashboard = () => {
     </Fragment>
   ) : (
     <Fragment>
-      <h1>Welcome to MyTasks.</h1>
+      {/* <h1>Welcome to MyTasks.</h1>
       <h2>Please <Link to={"/login"}>log in</Link></h2>
-      <div style={{width:350}}></div>
+      <div style={{width:350}}></div> */}
     </Fragment>
   );
 };

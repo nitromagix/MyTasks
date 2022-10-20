@@ -17,10 +17,12 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.SMALLINT,
       primaryKey: true,
       autoIncrement: true
-
     },
     name: DataTypes.STRING,
     description: DataTypes.STRING,
+    startedOn: DataTypes.DATE,
+    completedOn: DataTypes.DATE,
+    uid: DataTypes.UUID
   }, {
     sequelize,
     underscored: true,

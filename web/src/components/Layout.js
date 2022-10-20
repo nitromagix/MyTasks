@@ -5,6 +5,7 @@ import Aside from "./Aside";
 import Footer from "./Footer";
 import Header from "./Header";
 import Nav from "./Nav";
+import NavActions from "./NavActions";
 
 const Layout = () => {
   return (
@@ -14,6 +15,7 @@ const Layout = () => {
         <div className="container">
           <Nav />
           <main>
+            <NavActions/>
             <Outlet />
           </main>
           <Aside/>

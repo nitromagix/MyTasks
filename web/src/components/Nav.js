@@ -10,13 +10,19 @@ const Nav = () => {
     <nav>
       <ul>
         <li>
-          <Link to="/">Home</Link>
+          <Link to="/">Dashboard</Link>
         </li>
         <li>
-          <Link to="/login">Login</Link>
+          <Link to="/today">Today's Tasks</Link>
         </li>
         <li>
-          <Link to="/signup">Signup</Link>
+          <Link to="/all">All Tasks</Link>
+        </li>
+        <li>
+          <Link to="/calendar">Calendar</Link>
+        </li>
+        <li>
+          <Link to="/kanban">Kanban</Link>
         </li>
       </ul>
     </nav>

@@ -16,7 +16,7 @@ router.post("/", async (req, res) => {
 
   if (user && (await bcrypt.compare(body.password, user.passwordDigest))) {
     const jwToken = await jwt.encode(process.env.TOKEN_SECRET, {
-      id: user.userId,
+      uid: user.uid,
     });
     // console.log(jwtToken);
     res.json({ user: user, token: jwToken.value });
@@ -35,9 +35,10 @@ router.get("/token", async (req, res) => {
       case "Bearer":
         const dec = jwt.decode(process.env.TOKEN_SECRET, token);
 
-        const { id } = dec.value;
+        const { uid } = dec.value;
+        console.log(uid)
         const user = await User.findOne({
-          where: { userId: id },
+          where: { uid: uid },
         });
         res.json(user);
     }

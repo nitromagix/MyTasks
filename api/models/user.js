@@ -34,6 +34,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.ENUM,
         values: ["reviewer", "admin"],
       },
+      uid: DataTypes.UUID
     },
     {
       sequelize,
