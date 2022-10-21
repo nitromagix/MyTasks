@@ -41,13 +41,13 @@ const TasksKanban = () => {
     );
   };
 
-  return user && user.role === "reviewer" ? (
+  return user && user.role === "user" ? (
     <Fragment>
       <h1>Tasks Kanban</h1>
       {buildKanban()}
     </Fragment>
   ) : (
-    <Navigate to={"/login"}></Navigate>
+    <Fragment></Fragment>
   );
 };
 

@@ -32,7 +32,7 @@ module.exports = (sequelize, DataTypes) => {
       passwordDigest: DataTypes.STRING,
       role: {
         type: DataTypes.ENUM,
-        values: ["reviewer", "admin"],
+        values: ["user", "reviewer", "admin"],
       },
       uid: DataTypes.UUID
     },

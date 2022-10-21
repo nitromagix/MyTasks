@@ -10,7 +10,7 @@ function NavButtons() {
   const navigate = useNavigate();
 
   const navbuttons = () => {
-    return user && user.role === "reviewer" ? (
+    return user && user.role === "user" ? (
       <div>
         <button onClick={() => navigate(-1)}>Back</button>|
         <button onClick={() => navigate("/create")}>Create Task</button>

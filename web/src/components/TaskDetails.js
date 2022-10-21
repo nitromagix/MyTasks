@@ -7,12 +7,12 @@ const TaskDetails = () => {
   const userContext = useContext(CurrentUser);
   const user = userContext.currentUser;
 
-  return user && user.role === "reviewer" ? (
+  return user && user.role === "user" ? (
     <Fragment>
       <h1>Task Details</h1>
     </Fragment>
   ) : (
-    <Navigate to={"/login"}></Navigate>
+    <Fragment></Fragment>
 
   );
 };

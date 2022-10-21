@@ -127,7 +127,7 @@ const TasksCalendar = () => {
     return <tr>{d}</tr>;
   });
 
-  return user && user.role === "reviewer" ? (
+  return user && user.role === "user" ? (
     <Fragment>
       <h1>Tasks Calendar</h1>
       {/* <Calendar onChange={setDate} value={date} /> */}
@@ -140,7 +140,8 @@ const TasksCalendar = () => {
       </table>
     </Fragment>
   ) : (
-    <Navigate to={"/login"}></Navigate>
+    <Fragment></Fragment>
+
 
   );
 };

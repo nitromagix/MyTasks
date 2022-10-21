@@ -6,7 +6,7 @@ const Aside = () => {
   const userContext = useContext(CurrentUser);
   const user = userContext.currentUser;
 
-  return user && user.role === "reviewer" ? (
+  return user && user.role === "user" ? (
     <Fragment>
       <aside>
         <strong>Labels</strong>

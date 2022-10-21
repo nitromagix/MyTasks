@@ -48,13 +48,13 @@ const TasksToday = () => {
 
   buildTaskView();
 
-  return user && user.role === "reviewer" ? (
+  return user && user.role === "user" ? (
     <Fragment>
       <h1>Today's Tasks</h1>
       {taskView}
     </Fragment>
   ) : (
-    <Navigate to={"/login"}></Navigate>
+    <Fragment></Fragment>
   );
 };
 

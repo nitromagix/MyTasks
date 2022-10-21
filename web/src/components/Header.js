@@ -7,7 +7,7 @@ const Header = () => {
   const userContext = useContext(CurrentUser);
   const user = userContext.currentUser;
 
-  return user && user.role === "reviewer" ? (
+  return user && user.role === "user" ? (
     <Fragment>
       <header>Hello, {user.firstName}</header>
     </Fragment>

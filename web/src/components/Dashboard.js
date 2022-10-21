@@ -6,7 +6,7 @@ const Dashboard = () => {
   const userContext = useContext(CurrentUser);
   const user = userContext.currentUser;
 
-  return user && user.role === "reviewer" ? (
+  return user && user.role === "user" ? (
     <Fragment>
       <h1>Dashboard</h1>
       <div style={{ width: 350 }}></div>
