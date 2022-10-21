@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 import { CurrentUser } from "../contexts/CurrentUser";
 import { useNavigate} from "react-router-dom"
+import API_URL from "../app/api"
 
 function LoginForm() {
   const navigate = useNavigate();
@@ -17,7 +18,7 @@ function LoginForm() {
   async function handleSubmit(e) {
     e.preventDefault();
 
-    const response = await fetch("http://localhost:3333/authentication/", {
+    const response = await fetch(`${API_URL}/authentication/`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -22,7 +22,8 @@ module.exports = (sequelize, DataTypes) => {
     description: DataTypes.STRING,
     startedOn: DataTypes.DATE,
     completedOn: DataTypes.DATE,
-    uid: DataTypes.UUID
+    uid: DataTypes.UUID,
+    userId: DataTypes.UUID
   }, {
     sequelize,
     underscored: true,

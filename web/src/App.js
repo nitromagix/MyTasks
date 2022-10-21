@@ -11,6 +11,7 @@ import TasksAll from "./components/TasksAll";
 import TasksCalendar from "./components/TasksCalendar";
 import TasksKanban from "./components/TasksKanban";
 import TaskCreate from "./components/TaskCreate";
+import TaskDetails from "./components/TaskDetails";
 
 function App() {
   return (
@@ -24,9 +25,10 @@ function App() {
             <Route path="/calendar" element={<TasksCalendar />} />
             <Route path="/kanban" element={<TasksKanban />} />
             <Route path="/create" element={<TaskCreate />} />
+            <Route path="/details/:uid" element={<TaskDetails />} />
+            <Route path="/login" element={<LoginForm />} />
+            <Route path="/signup" element={<SignUpForm />} />
             {/* <Route path="*" element={<NoPage />} /> */}
-            <Route path="login" element={<LoginForm />} />
-            <Route path="signup" element={<SignUpForm />} />
           </Route>
         </Routes>
       </BrowserRouter>

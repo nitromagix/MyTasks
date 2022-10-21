@@ -9,9 +9,9 @@ const Nav = () => {
   return user && user.role === "reviewer" ? (
     <nav>
       <ul>
-        <li>
+        {/* <li>
           <Link to="/">Dashboard</Link>
-        </li>
+        </li> */}
         <li>
           <Link to="/today">Today's Tasks</Link>
         </li>

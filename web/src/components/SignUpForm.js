@@ -1,6 +1,6 @@
 import { useState, useEffect, useParams } from "react"
 import { useNavigate} from "react-router-dom"
-
+import API_URL from "../app/api"
 
 function SignUpForm() {
 
@@ -15,8 +15,7 @@ function SignUpForm() {
 
 	async function handleSubmit(e) {
 		e.preventDefault()
-
-		await fetch(`http://localhost:3333/users/`, {
+		await fetch(`${API_URL}/users/`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'
