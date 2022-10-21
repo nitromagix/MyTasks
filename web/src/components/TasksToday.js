@@ -1,5 +1,5 @@
 import { Fragment, useContext, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { CurrentUser } from "../contexts/CurrentUser";
 import {
@@ -25,7 +25,7 @@ const TasksToday = () => {
   const buildTaskView = () => {
     for (let i in taskData) {
       const task = taskData[i];
-      console.log(task);
+      // console.log(task);
       const c = (
         <div
           key={task.taskId}
@@ -54,7 +54,7 @@ const TasksToday = () => {
       {taskView}
     </Fragment>
   ) : (
-    <Fragment></Fragment>
+    <Navigate to={"/login"}></Navigate>
   );
 };
 

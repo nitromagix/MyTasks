@@ -1,5 +1,5 @@
 import { Fragment, useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { CurrentUser } from "../contexts/CurrentUser";
 import { trace } from "../nmx";
 
@@ -12,7 +12,8 @@ const TaskDetails = () => {
       <h1>Task Details</h1>
     </Fragment>
   ) : (
-    <Fragment></Fragment>
+    <Navigate to={"/login"}></Navigate>
+
   );
 };
 

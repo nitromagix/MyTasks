@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { CurrentUser } from "../contexts/CurrentUser";
-import { useNavigate} from "react-router-dom"
+import { Link, useNavigate} from "react-router-dom"
 import API_URL from "../app/api"
 
 function LoginForm() {
@@ -32,7 +32,7 @@ function LoginForm() {
       setCurrentUser(responseJson.user);
       // console.log(responseJson.token)
       localStorage.setItem("token", responseJson.token);
-      navigate("/");
+      navigate("/today");
     } else {
       setErrorMessage(responseJson.message);
     }
@@ -81,6 +81,7 @@ function LoginForm() {
         </div>
         <input className="btn btn-primary" type="submit" value="Login" />
       </form>
+      <h4><Link to="/signup">Sign up</Link></h4>
     </main>
   );
 }
