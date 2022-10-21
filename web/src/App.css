@@ -89,3 +89,24 @@ a.button-link:hover {
 .App {
   text-align: initial;
 }
+
+
+.editmodalicon {
+  vertical-align: text-bottom;
+  float: right;
+}
+
+.editmodalicon > img {
+  cursor: pointer;
+  width: 25px;
+  height: 25px;
+  /* margin-left: 40px;
+  margin-bottom: 2px; */
+  margin-right: 20px;
+}
+
+.modalContent{
+  /* display: inline-block; */
+  margin: 0 auto;
+  text-align: center;
+}

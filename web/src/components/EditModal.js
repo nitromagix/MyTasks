@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Modal from "react-modal";
-import pencil from "../file_edit.png";
+import pencil from "../add_task.png";
 
 Modal.setAppElement("#root");
 

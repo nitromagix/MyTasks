@@ -10,6 +10,7 @@ const TaskCreate = () => {
   return user && user.role === "user" ? (
     <Fragment>
       <h1>Create New Task</h1>
+      <div style={{width:350}}>task</div>
     </Fragment>
   ) : (
     <Fragment></Fragment>
