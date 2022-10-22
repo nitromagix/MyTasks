@@ -15,11 +15,13 @@ const Layout = () => {
         <div className="container">
           <Nav />
           <main>
-            <NavActions/>
-            <Outlet />
+            <div className="content">
+              <NavActions />
+              <Outlet />
+            </div>
           </main>
-          <Aside/>
-          <Footer/>
+          <Aside />
+          <Footer />
         </div>
       </div>
     </Fragment>

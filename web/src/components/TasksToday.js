@@ -22,11 +22,13 @@ const TasksToday = () => {
     fetchData();
   }, []);
 
-  const taskView = taskData.map((task) => {
+  const taskView = taskData.map((task, i) => {
     return (
       <div key={task.taskId} className="task-today">
-        <h3>{task.name}</h3>
-        <h4>{task.description}</h4>
+        <div className="task-today-content ">
+          <h3>{task.name}</h3>
+          <p className="line-clamp">{task.description}</p>
+        </div>
       </div>
     );
   });

@@ -51,28 +51,18 @@ const TasksCalendar = () => {
   const blanks = [];
   for (let i = 0; i < firstDayOfMonth(); i++) {
     blanks.push(
-      <td
-      key={`b${i}`}
-        style={{
-          width: 50,
-          height: 100,
-          border: 1,
-          borderColor: "black",
-          borderStyle: "solid",
-        }}
-        className="calendar-day empty"
-      >
+      <td key={`b${i}`} className="calendar-day empty">
         {""}
       </td>
     );
   }
 
   const daysTasks = (day) => {
-    const t = taskData.map((task) => {
+    const t = taskData.map((task, i) => {
       const createdOn = new Date(task.createdAt);
       return createdOn.getDate() === day ? (
-        <Link key={day} to={`/details/${task.uid}`}>
-          <div style={{ backgroundColor: "orange" }}>{task.name}</div>
+        <Link key={`${day}-${i}`} to={`/details/${task.uid}`}>
+          <div className="task-calendar-day line-clamp">{task.name}</div>
         </Link>
       ) : null;
     });
@@ -82,18 +72,7 @@ const TasksCalendar = () => {
   let daysInMonth = [];
   for (let d = 1; d <= daysInThisMonth(); d++) {
     daysInMonth.push(
-      <td
-        key={d}
-        style={{
-          width: 50,
-          height: 100,
-          border: 1,
-          borderColor: "black",
-          borderStyle: "solid",
-          verticalAlign: "top",
-        }}
-        className="calendar-day"
-      >
+      <td key={d} className="calendar-day">
         <span>{d}</span>
         {daysTasks(d)}
       </td>
@@ -127,7 +106,7 @@ const TasksCalendar = () => {
       <h1>Tasks Calendar</h1>
       {/* <Calendar onChange={setDate} value={date} /> */}
       {/* {daysInThisMonth()} */}
-      <table className="calendar-day">
+      <table className="calendar">
         <thead>
           <tr>{weekdayshortname}</tr>
         </thead>

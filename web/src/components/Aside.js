@@ -10,7 +10,7 @@ const Aside = () => {
     <Fragment>
       <aside>
         <strong>Labels</strong>
-        <div style={{width:200,height:200}}>contextual controls here</div>
+        <div style={{height:200}}>contextual controls here</div>
       </aside>
     </Fragment>
   ) : (
