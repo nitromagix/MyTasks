@@ -38,7 +38,7 @@ function EditModal(props) {
   }
 
   return (
-    <div className="editmodalicon clearfix">
+    <div className="modal-edit-icon clearfix">
       <img src={pencil} alt="edit" onClick={openModal} />
       <Modal
         isOpen={modalIsOpen}
@@ -58,7 +58,7 @@ function EditModal(props) {
         }}
         contentLabel="Edit Modal"
       >
-        <div className="modalContent">
+        <div className="modal-content">
           <form onSubmit={modalSubmit}>
             {props.form}
             <div className="textcenter">

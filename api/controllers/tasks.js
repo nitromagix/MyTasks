@@ -10,9 +10,10 @@ router.get("/", async (req, res) => {
   trace("tasks -> GET")(id)
   const tasks = await Task.findAll({
     where: {
-      userId: req.currentUser?.uid,
+      userId: id,
     },
   });
+  trace("tasks -> GET")(tasks)
   res.json(tasks);
 });
 

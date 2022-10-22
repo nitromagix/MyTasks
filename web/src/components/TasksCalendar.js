@@ -23,16 +23,6 @@ const TasksCalendar = () => {
     fetchData();
   }, []);
 
-  const buildTaskView = () => {
-    const t = [];
-    for (let i in taskData) {
-      t.push(taskData[i]);
-    }
-    return t;
-  };
-
-  const allTasks = buildTaskView();
-
   const daysInThisMonth = () => {
     var now = new Date();
     return new Date(now.getFullYear(), now.getMonth() + 1, 0).getDate();
@@ -62,6 +52,7 @@ const TasksCalendar = () => {
   for (let i = 0; i < firstDayOfMonth(); i++) {
     blanks.push(
       <td
+      key={`b${i}`}
         style={{
           width: 50,
           height: 100,
@@ -77,9 +68,13 @@ const TasksCalendar = () => {
   }
 
   const daysTasks = (day) => {
-    const t =  allTasks.map((task) => {
+    const t = taskData.map((task) => {
       const createdOn = new Date(task.createdAt);
-      return createdOn.getDate() === day ? <Link key={day} to={`/details/${task.uid}`}><div style={{backgroundColor:"orange"}}>{task.name}</div></Link> : null;
+      return createdOn.getDate() === day ? (
+        <Link key={day} to={`/details/${task.uid}`}>
+          <div style={{ backgroundColor: "orange" }}>{task.name}</div>
+        </Link>
+      ) : null;
     });
     return t;
   };
@@ -124,7 +119,7 @@ const TasksCalendar = () => {
   });
 
   let daysinmonth = rows.map((d, i) => {
-    return <tr>{d}</tr>;
+    return <tr key={i}>{d}</tr>;
   });
 
   return user && user.role === "user" ? (
@@ -141,8 +136,6 @@ const TasksCalendar = () => {
     </Fragment>
   ) : (
     <Fragment></Fragment>
-
-
   );
 };
 

@@ -14,7 +14,7 @@ const TasksToday = () => {
   const dispatch = useDispatch();
   const user = userContext.currentUser;
   const taskData = useSelector(getTaskData);
-  const taskView = [];
+
   useEffect(() => {
     async function fetchData() {
       dispatch(getTaskDataThunk);
@@ -22,31 +22,14 @@ const TasksToday = () => {
     fetchData();
   }, []);
 
-  const buildTaskView = () => {
-    for (let i in taskData) {
-      const task = taskData[i];
-      // console.log(task);
-      const c = (
-        <div
-          key={task.taskId}
-          style={{
-            margin: 10,
-            padding: 10,
-            border: 1,
-            borderStyle: "solid",
-            borderColor: "orange",
-            borderRadius: 3,
-          }}
-        >
-          <h3>{task.name}</h3>
-          <h4>{task.description}</h4>
-        </div>
-      );
-      taskView.push(c);
-    }
-  };
-
-  buildTaskView();
+  const taskView = taskData.map((task) => {
+    return (
+      <div key={task.taskId} className="task-today">
+        <h3>{task.name}</h3>
+        <h4>{task.description}</h4>
+      </div>
+    );
+  });
 
   return user && user.role === "user" ? (
     <Fragment>

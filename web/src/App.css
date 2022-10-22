@@ -8,6 +8,10 @@
   --shadow: 0px 0px 3px 1px #ddd;
 }
 
+.App {
+  text-align: initial;
+}
+
 body {
   margin: 0;
   font-family: sans-serif;
@@ -86,17 +90,12 @@ a.button-link:hover {
   font-size: 15px;
 }
 
-.App {
-  text-align: initial;
-}
-
-
-.editmodalicon {
+.modal-edit-icon {
   vertical-align: text-bottom;
   float: right;
 }
 
-.editmodalicon > img {
+.modal-edit-icon > img {
   cursor: pointer;
   width: 25px;
   height: 25px;
@@ -105,8 +104,21 @@ a.button-link:hover {
   margin-right: 20px;
 }
 
-.modalContent{
+.modal-content {
   /* display: inline-block; */
   margin: 0 auto;
   text-align: center;
+}
+
+.task-today {
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid orange;
+  border-radius: 3px;
+}
+
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
 }
