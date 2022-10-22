@@ -11,8 +11,8 @@ import { trace } from "../nmx";
 
 const TasksToday = () => {
   const userContext = useContext(CurrentUser);
-  const dispatch = useDispatch();
   const user = userContext.currentUser;
+  const dispatch = useDispatch();
   const taskData = useSelector(getTaskData);
 
   useEffect(() => {

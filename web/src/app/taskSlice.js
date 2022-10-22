@@ -15,18 +15,29 @@ export const taskSlice = createSlice({
     setTaskData: (state, action) => {
       state.taskData = action.payload;
     },
+    addTask: (state, action) => {
+      state.taskData.push(action.payload);
+    },
+    updateTask: (state, action) => {
+      const editedTask = action.payload;
+      state.taskData = state.portfolioData.map((task, i) => {
+        return task.uid === editedTask.uid ? editedTask : task;
+      });
+    },
   },
 });
 
-export const { setTaskData } = taskSlice.actions;
+export const { setTaskData, addTask, updateTask } = taskSlice.actions;
 
 export const getTaskData = (state) => state.task.taskData;
 
 export const getTaskDataThunk = async (dispatch, getState) => {
-
   const requestOptions = {
     method: "GET",
-    headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+      "Content-Type": "application/json",
+    },
   };
 
   fetch(`${API_URL}/tasks`, requestOptions)
@@ -46,17 +57,20 @@ export const getTaskDataThunk = async (dispatch, getState) => {
     });
 };
 
-export const updateTaskDataThunk = (data) => {
+export const addTaskDataThunk = (data) => {
   return async (dispatch, getState) => {
     const taskData = data;
 
     const requestOptions = {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify(taskData),
     };
 
-    fetch(API_URL, requestOptions)
+    fetch(`${API_URL}/tasks`, requestOptions)
       .then(async (response) => {
         const res = await response.json();
 
@@ -66,7 +80,38 @@ export const updateTaskDataThunk = (data) => {
           return Promise.reject(error);
         }
 
-        dispatch(setTaskData(taskData));
+        dispatch(addTask(taskData));
+      })
+      .catch((error) => {
+        console.error("There was an error!", error);
+      });
+  };
+};
+
+export const updateTaskDataThunk = (data) => {
+  return async (dispatch, getState) => {
+    const taskData = data;
+
+    const requestOptions = {
+      method: "PUT",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(taskData),
+    };
+
+    fetch(`${API_URL}/tasks`, requestOptions)
+      .then(async (response) => {
+        const res = await response.json();
+
+        if (!response.ok) {
+          const error = (res && res.message) || response.status;
+          console.log(error);
+          return Promise.reject(error);
+        }
+
+        dispatch(updateTask(taskData));
       })
       .catch((error) => {
         console.error("There was an error!", error);

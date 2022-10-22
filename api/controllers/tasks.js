@@ -5,15 +5,32 @@ const { trace } = require("../nmx");
 
 const { Task } = db;
 
+router.post("/", async (req, res) => {
+  if (!req.currentUser) {
+    return res
+      .status(403)
+      .json({ message: "You are not allowed to add a task" });
+  }
+
+  const id = req.currentUser?.uid;
+
+  if (!req.body.userId) {
+    req.body.userId = id;
+  }
+  console.log(req.body);
+  const task = await Task.create(req.body);
+  res.json(task);
+});
+
 router.get("/", async (req, res) => {
   const id = req.currentUser?.uid;
-  trace("tasks -> GET")(id)
+  // trace("tasks -> GET")(id);
   const tasks = await Task.findAll({
     where: {
       userId: id,
     },
   });
-  trace("tasks -> GET")(tasks)
+  // trace("tasks -> GET")(tasks);
   res.json(tasks);
 });
 

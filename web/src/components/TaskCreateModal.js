@@ -6,6 +6,8 @@ import { useNavigate } from "react-router";
 import { CurrentUser } from "../contexts/CurrentUser";
 
 import pencil from "../add_task.png";
+import { useDispatch, useSelector } from "react-redux";
+import { addTaskDataThunk } from "../app/taskSlice";
 
 Modal.setAppElement("#root");
 
@@ -22,8 +24,9 @@ const customStyles = {
 
 function TaskCreateModal(props) {
   const userContext = useContext(CurrentUser);
-  const navigate = useNavigate();
   const user = userContext.currentUser;
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [task, setTask] = useState({
     name: "",
@@ -46,6 +49,11 @@ function TaskCreateModal(props) {
 
   function modalSubmit(e) {
     e.preventDefault();
+    const formData = e.target;
+    dispatch(addTaskDataThunk({
+      name: formData.name.value,
+      description: formData.description.value,
+    }))
     closeModal();
     props.onSave(e);
     navigate("/today");
