@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { Fragment, useContext, useState } from "react";
 import { CurrentUser } from "../contexts/CurrentUser";
 import { Link, useNavigate } from "react-router-dom";
 import API_URL from "../app/api";
@@ -41,7 +41,7 @@ function LoginForm() {
   }
 
   return (
-    <main>
+    <Fragment>
       <h1>Login</h1>
       {errorMessage !== null ? (
         <div className="alert alert-danger" role="alert">
@@ -49,11 +49,13 @@ function LoginForm() {
         </div>
       ) : null}
       <form onSubmit={handleSubmit}>
-        <div className="row">
-          <div className="label">
-            <label htmlFor="email">Email</label>
+        <div className="form-group">
+          <div className="form-row">
+            <label className="form-label" htmlFor="email">
+              Email
+            </label>
           </div>
-          <div className="row">
+          <div className="form-row">
             <input
               type="email"
               required
@@ -66,10 +68,12 @@ function LoginForm() {
               name="email"
             />
           </div>
-          <div className="row">
-            <label htmlFor="password">Password</label>
+          <div className="form-row">
+            <label className="form-label" htmlFor="password">
+              Password
+            </label>
           </div>
-          <div className="row">
+          <div className="form-row">
             <input
               type="password"
               required
@@ -82,13 +86,13 @@ function LoginForm() {
               name="password"
             />
           </div>
+          <input className="btn btn-primary" type="submit" value="Login" />
         </div>
-        <input className="btn btn-primary" type="submit" value="Login" />
       </form>
       <h4>
         <Link to="/signup">Sign up</Link>
       </h4>
-    </main>
+    </Fragment>
   );
 }
 

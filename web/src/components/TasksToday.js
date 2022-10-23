@@ -9,6 +9,7 @@ import {
 } from "../app/taskSlice";
 
 import { taskStatusGbColorClassName } from "../app/colors";
+import {dateToMMDDYYYY} from "../nmx"
 
 const TasksToday = () => {
   const userContext = useContext(CurrentUser);
@@ -24,7 +25,6 @@ const TasksToday = () => {
   }, []);
 
   const taskView = taskData.map((task, i) => {
-
     const taskDate = new Date(task.taskDate)
     if (taskDate > Date.now())
       return null;
@@ -51,9 +51,11 @@ const TasksToday = () => {
     );
   });
 
+  const date = new Date(Date.now())
+
   return user && user.role === "user" ? (
     <Fragment>
-      <h1>Today's Tasks</h1>
+      <h1>Today's Tasks - {dateToMMDDYYYY(date)}</h1>
       {taskView}
     </Fragment>
   ) : (

@@ -9,7 +9,7 @@ const trace = (label) => (value) => {
 
 
 const dateToMMDDYYYY = (date) =>
-  `${date.getMonth()}/${date.getDate()}/${date.getFullYear()}`;
+  `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
 
 module.exports = {
   trace,

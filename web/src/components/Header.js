@@ -15,14 +15,19 @@ const Header = () => {
 
   return user && user.role === "user" ? (
     <Fragment>
-      <header>
-        Hello, {user.firstName} | <Link onClick={logoutClick}>Log-out</Link>
+      <header className="clearfix">
+        <div className="float-left">LOGO</div>
+        <div className="log-in-out-profile float-right">
+          <span>Hello, {user.firstName}</span> | <Link onClick={logoutClick}>Log out</Link>
+        </div>
       </header>
     </Fragment>
   ) : (
     <Fragment>
-      <header>
+      <header className="clearfix">
+      <div className="log-in-out-profile float-right">
         <Link to={"/login"}>Log-in</Link>
+        </div>
       </header>
     </Fragment>
   );

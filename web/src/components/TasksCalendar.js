@@ -1,7 +1,8 @@
-import { Fragment, useContext, useEffect } from "react";
+import { Fragment, useContext, useEffect, useState, useRef, useCallback } from "react";
 import { Link, Navigate } from "react-router-dom";
 import { CurrentUser } from "../contexts/CurrentUser";
 import { taskStatusGbColorClassName } from "../app/colors";
+import Calendar from "./Calendar";
 import { trace } from "../nmx";
 import {
   getTaskData,
@@ -17,6 +18,9 @@ const TasksCalendar = () => {
   const dispatch = useDispatch();
   const user = userContext.currentUser;
   const taskData = useSelector(getTaskData);
+  const [momentState, setMomentState] = useState(moment());
+
+
   useEffect(() => {
     async function fetchData() {
       dispatch(getTaskDataThunk);
@@ -24,95 +28,26 @@ const TasksCalendar = () => {
     fetchData();
   }, []);
 
-  const daysInThisMonth = () => {
-    var now = new Date();
-    return new Date(now.getFullYear(), now.getMonth() + 1, 0).getDate();
+  const scrollLeft = () => {
+    setMomentState(momentState.subtract(1, "M"));
+    console.log(momentState);
   };
 
-  const state = {
-    dateObject: moment(),
+  const scrollRight = () => {
+    setMomentState(momentState.add(1, "M"));
+    console.log(momentState);
   };
-
-  const weekdayshort = moment.weekdaysShort();
-
-  let weekdayshortname = weekdayshort.map((day) => {
-    return (
-      <th key={day} className="week-day">
-        {day}
-      </th>
-    );
-  });
-
-  const firstDayOfMonth = () => {
-    let dateObject = state.dateObject;
-    let firstDay = moment(dateObject).startOf("month").format("d");
-    return firstDay;
-  };
-
-  const blanks = [];
-  for (let i = 0; i < firstDayOfMonth(); i++) {
-    blanks.push(
-      <td key={`b${i}`} className="calendar-day empty">
-        {""}
-      </td>
-    );
-  }
-
-  const daysTasks = (day) => {
-    const t = taskData.map((task, i) => {
-      const createdOn = new Date(task.taskDate);
-      return createdOn.getDate() === day ? (
-        <Link key={`${day}-${i}`} to={`/details/${task.uid}`}>
-          <div className={`task-calendar-day line-clamp ${taskStatusGbColorClassName(task)}`}>{task.name}</div>
-        </Link>
-      ) : null;
-    });
-    return t;
-  };
-
-  let daysInMonth = [];
-  for (let d = 1; d <= daysInThisMonth(); d++) {
-    daysInMonth.push(
-      <td key={d} className="calendar-day">
-        <span>{d}</span>
-        {daysTasks(d)}
-      </td>
-    );
-  }
-
-  var totalSlots = [...blanks, ...daysInMonth];
-  let rows = [];
-  let cells = [];
-
-  totalSlots.forEach((row, i) => {
-    if (i % 7 !== 0) {
-      cells.push(row); // if index not equal 7 that means not go to next week
-    } else {
-      rows.push(cells); // when reach next week we contain all td in last week to rows
-      cells = []; // empty container
-      cells.push(row); // in current loop we still push current row to new container
-    }
-    if (i === totalSlots.length - 1) {
-      // when end loop we add remain date
-      rows.push(cells);
-    }
-  });
-
-  let daysinmonth = rows.map((d, i) => {
-    return <tr key={i}>{d}</tr>;
-  });
 
   return user && user.role === "user" ? (
     <Fragment>
-      <h1>Tasks Calendar</h1>
-      {/* <Calendar onChange={setDate} value={date} /> */}
-      {/* {daysInThisMonth()} */}
-      <table className="calendar">
-        <thead>
-          <tr>{weekdayshortname}</tr>
-        </thead>
-        <tbody>{daysinmonth}</tbody>
-      </table>
+      <span key={momentState}>
+        <Calendar
+          moment={momentState}
+          taskData={taskData}
+          scrollLeft={scrollLeft}
+          scrollRight={scrollRight}
+        />
+      </span>
     </Fragment>
   ) : (
     <Fragment></Fragment>

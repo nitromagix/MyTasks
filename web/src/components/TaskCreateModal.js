@@ -89,29 +89,41 @@ function TaskCreateModal(props) {
               <div style={{ width: 350 }}>
                 {/* <form onSubmit={handleSubmit}> */}
                 <div className="form-group">
-                  <label htmlFor="name">Name</label>
-                  <input
-                    type="text"
-                    required
-                    // value=""
-                    onChange={(e) => setTask({ ...task, name: e.target.value })}
-                    className="form-control"
-                    id="name"
-                    name="name"
-                  />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="description">Description</label>
-                  <input
-                    type="text"
-                    // value=""
-                    onChange={(e) =>
-                      setTask({ ...task, description: e.target.value })
-                    }
-                    className="form-control"
-                    id="description"
-                    name="description"
-                  />
+                  <div className="form-row">
+                    <label className="form-label" htmlFor="name">
+                      Name
+                    </label>
+                  </div>
+                  <div className="form-row">
+                    <input
+                      type="text"
+                      required
+                      // value=""
+                      onChange={(e) =>
+                        setTask({ ...task, name: e.target.value })
+                      }
+                      className="form-control"
+                      id="name"
+                      name="name"
+                    />
+                  </div>
+                  <div className="form-row">
+                    <label className="form-label" htmlFor="description">
+                      Description
+                    </label>
+                  </div>
+                  <div className="form-row">
+                    <input
+                      type="text"
+                      // value=""
+                      onChange={(e) =>
+                        setTask({ ...task, description: e.target.value })
+                      }
+                      className="form-control"
+                      id="description"
+                      name="description"
+                    />
+                  </div>
                 </div>
                 {/* <div className="form-group">
             <label htmlFor="pic">Place Picture</label>

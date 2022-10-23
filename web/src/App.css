@@ -1,6 +1,4 @@
 :root {
-  --black: #000000;
-  --white: #ffffff;
   --charcoal: #435861;
   --light-grey: #e9e9e9;
   --spearmint: #6e9277;
@@ -92,14 +90,14 @@ li {
 }
 
 h1 {
+  margin-top: 0;
   text-align: center;
 }
 
 a {
   text-decoration: none;
-  color:black
+  color: black;
 }
-
 
 a.button-link {
   display: inline-block;
@@ -127,6 +125,8 @@ CONTENT
 .content {
   max-width: 500px;
   margin: auto;
+  /* border: 1px solid var(--spearmint); */
+  overflow: hidden;
 }
 
 /* 
@@ -181,12 +181,11 @@ TASK
 }
 
 .task-content > h3 {
-  margin:5px 0 5px 5px
+  margin: 5px 0 5px 5px;
 }
 
 .task-content > p {
-  margin:5px 0 5px 5px
-
+  margin: 5px 0 5px 5px;
 }
 
 .task-calendar-day {
@@ -205,17 +204,99 @@ CALENDAR
 
  */
 
+.calendar-container {
+}
+
 .calendar {
   margin: 0 auto 25px auto;
 }
 
 .calendar-day {
-  min-width: 45px;
-  max-width: 45px;
+  min-width: 50px;
+  max-width: 50px;
   height: 100px;
   border-radius: 2px;
   border: 1px solid var(--misty-blue);
   vertical-align: top;
+}
+
+.calendar-controls {
+  width: 100%;
+  text-align: center;
+  display: inline-block;
+  margin: auto;
+}
+
+.calendar-title {
+  display: inline-block;
+  width: 350px;
+}
+
+.calendar-scroll-left {
+  display: inline-block;
+  font-size: 25px;
+  font-weight: bold;
+  padding-right: 25px;
+}
+.calendar-scroll-right {
+  display: inline-block;
+  font-size: 25px;
+  font-weight: bold;
+  padding-left: 25px;
+}
+
+.calendar-scroll-left:hover,
+.calendar-scroll-right:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+/* 
+
+LOG IN / LOG OUT / PROFILE
+
+ */
+
+.log-in-out-profile {
+  margin-top: 8px;
+  color: white;
+}
+
+.log-in-out-profile span {
+  margin-right: 5px;
+}
+
+.log-in-out-profile a {
+  color: white;
+  text-decoration: underline;
+  margin-left: 5px;
+  margin-right: 10px;
+}
+
+/* 
+
+FORM
+
+ */
+
+.form-group {
+  text-align: initial;
+}
+
+.form-label {
+}
+
+.form-control {
+}
+
+/* 
+
+NAVACTIONS
+
+ */
+
+.nav-actions {
+  /* border: 1px solid salmon; */
 }
 
 /* 
@@ -223,16 +304,6 @@ CALENDAR
 COLORS
 
  */
-
-/* --charcoal: #435861;
- --light-grey: #e9e9e9;
- --spearmint: #6e9277;
- --misty-blue: #a0bec5;
- --red: #f68c85;
- --yellow: #fbb85a;
- --green: #74c98d;
- --blue: #6ba8df;
- --shadow: 0px 0px 3px 1px #ddd; */
 
 .bg-red {
   background-color: var(--red);
@@ -254,6 +325,14 @@ MISC (CLEARFIX, LINE-CLAMP, etc.)
 
 .float-left {
   float: left;
+}
+
+.float-right {
+  float: right;
+}
+
+.float-none {
+  float: none;
 }
 
 .clearfix::after {
