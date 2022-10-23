@@ -1,7 +1,6 @@
 import { Fragment, useContext } from "react";
 import { Link, Navigate } from "react-router-dom";
 import { CurrentUser } from "../contexts/CurrentUser";
-import { trace } from "../nmx";
 
 const TaskDetails = () => {
   const userContext = useContext(CurrentUser);

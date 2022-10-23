@@ -1,6 +1,6 @@
 import { Fragment, useContext } from "react";
 import { CurrentUser } from "../contexts/CurrentUser";
-import { trace } from "../nmx";
+
 
 const Aside = () => {
   const userContext = useContext(CurrentUser);
@@ -10,7 +10,7 @@ const Aside = () => {
     <Fragment>
       <aside>
         <strong>Labels</strong>
-        <div style={{height:200}}>contextual controls here</div>
+        <div style={{height:200}}>contextual controls</div>
       </aside>
     </Fragment>
   ) : (

@@ -20,6 +20,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     name: DataTypes.STRING,
     description: DataTypes.STRING,
+    taskDate: DataTypes.DATE,
     startedOn: DataTypes.DATE,
     completedOn: DataTypes.DATE,
     uid: DataTypes.UUID,

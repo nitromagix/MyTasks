@@ -1,6 +1,6 @@
 import { Fragment } from "react";
 import { Outlet } from "react-router-dom";
-import { trace } from "../nmx";
+
 import Aside from "./Aside";
 import Footer from "./Footer";
 import Header from "./Header";

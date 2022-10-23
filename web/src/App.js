@@ -15,8 +15,8 @@ import TaskDetails from "./components/TaskDetails";
 
 function App() {
   return (
-    <CurrentUserProvider>
-      <BrowserRouter>
+    <BrowserRouter>
+      <CurrentUserProvider>
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<Dashboard />} />
@@ -31,8 +31,8 @@ function App() {
             {/* <Route path="*" element={<NoPage />} /> */}
           </Route>
         </Routes>
-      </BrowserRouter>
-    </CurrentUserProvider>
+      </CurrentUserProvider>
+    </BrowserRouter>
   );
 }
 

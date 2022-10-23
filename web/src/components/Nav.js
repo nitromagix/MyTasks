@@ -17,13 +17,13 @@ const Nav = () => {
             <Link to="/today">Today</Link>
           </li>
           <li>
-            <Link to="/all">All Tasks</Link>
-          </li>
-          <li>
             <Link to="/calendar">Calendar</Link>
           </li>
           <li>
             <Link to="/kanban">Kanban</Link>
+          </li>
+          <li>
+            <Link to="/all">All Tasks</Link>
           </li>
         </ul>
       </div>

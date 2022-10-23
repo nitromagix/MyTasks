@@ -50,10 +50,12 @@ function TaskCreateModal(props) {
   function modalSubmit(e) {
     e.preventDefault();
     const formData = e.target;
-    dispatch(addTaskDataThunk({
-      name: formData.name.value,
-      description: formData.description.value,
-    }))
+    dispatch(
+      addTaskDataThunk({
+        name: formData.name.value,
+        description: formData.description.value,
+      })
+    );
     closeModal();
     props.onSave(e);
     navigate("/today");
@@ -81,7 +83,7 @@ function TaskCreateModal(props) {
         contentLabel="Create Task"
       >
         <div className="modal-content">
-        <h1>Create New Task</h1>
+          <h1>Create New Task</h1>
           <form onSubmit={modalSubmit}>
             <div>
               <div style={{ width: 350 }}>

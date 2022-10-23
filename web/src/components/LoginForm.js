@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { CurrentUser } from "../contexts/CurrentUser";
-import { Link, useNavigate} from "react-router-dom"
-import API_URL from "../app/api"
+import { Link, useNavigate } from "react-router-dom";
+import API_URL from "../app/api";
 
 function LoginForm() {
   const navigate = useNavigate();
@@ -50,8 +50,10 @@ function LoginForm() {
       ) : null}
       <form onSubmit={handleSubmit}>
         <div className="row">
-          <div className="col-sm-6 form-group">
+          <div className="label">
             <label htmlFor="email">Email</label>
+          </div>
+          <div className="row">
             <input
               type="email"
               required
@@ -64,8 +66,10 @@ function LoginForm() {
               name="email"
             />
           </div>
-          <div className="col-sm-6 form-group">
+          <div className="row">
             <label htmlFor="password">Password</label>
+          </div>
+          <div className="row">
             <input
               type="password"
               required
@@ -81,7 +85,9 @@ function LoginForm() {
         </div>
         <input className="btn btn-primary" type="submit" value="Login" />
       </form>
-      <h4><Link to="/signup">Sign up</Link></h4>
+      <h4>
+        <Link to="/signup">Sign up</Link>
+      </h4>
     </main>
   );
 }

@@ -1,7 +1,6 @@
 const router = require("express").Router();
 const jwt = require("json-web-token");
 const db = require("../models");
-const { trace } = require("../nmx");
 
 const { Task } = db;
 
@@ -13,25 +12,28 @@ router.post("/", async (req, res) => {
   }
 
   const id = req.currentUser?.uid;
-
-  if (!req.body.userId) {
-    req.body.userId = id;
+  if (id) {
+    if (!req.body.userId) {
+      req.body.userId = id;
+    }
+    console.log(req.body);
+    const task = await Task.create(req.body);
+    res.json(task);
   }
-  console.log(req.body);
-  const task = await Task.create(req.body);
-  res.json(task);
 });
 
 router.get("/", async (req, res) => {
   const id = req.currentUser?.uid;
-  // trace("tasks -> GET")(id);
-  const tasks = await Task.findAll({
-    where: {
-      userId: id,
-    },
-  });
-  // trace("tasks -> GET")(tasks);
-  res.json(tasks);
+
+  if (id) {
+    const tasks = await Task.findAll({
+      where: {
+        userId: id,
+      },
+    });
+
+    res.json(tasks);
+  }
 });
 
 // router.get("/:placeId", async (req, res) => {

@@ -48,7 +48,6 @@ aside {
   flex-grow: 2;
 }
 
-
 header {
   background-color: var(--charcoal);
   height: 35px;
@@ -82,6 +81,26 @@ footer {
   }
 }
 
+ul {
+  margin: 0;
+  padding: 25px;
+}
+
+li {
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  text-align: center;
+}
+
+a {
+  text-decoration: none;
+  color:black
+}
+
+
 a.button-link {
   display: inline-block;
   padding: 10px;
@@ -97,15 +116,6 @@ a.button-link:hover {
   padding: 11px;
   margin: 8px;
   font-size: 15px;
-}
-
-ul {
-  margin: 0;
-  padding: 25px;
-}
-li {
-  margin: 0;
-  padding: 0;
 }
 
 /* 
@@ -151,35 +161,42 @@ TASK
 
  */
 
-.task-today {
+.task {
   margin: 10px;
-  padding: 10px;
-  border: 1px solid var(--yellow);
+  padding: 5px;
+  border: 1px solid var(--misty-blue);
   border-radius: 3px;
 }
 
-.task-today-status {
-  width: 33px;
-  content: "";
-  border: 1px solid grey;
-  height: 50px;
+.task:hover {
+  cursor: pointer;
 }
 
-.task-today-content {
-
+.task-status {
+  width: 12px;
 }
 
-.task-today-content > p {
-  overflow: hidden;
+.task-content:hover {
+  cursor: pointer;
+}
+
+.task-content > h3 {
+  margin:5px 0 5px 5px
+}
+
+.task-content > p {
+  margin:5px 0 5px 5px
+
 }
 
 .task-calendar-day {
-  background-color: var(--yellow);
+  /* background-color: var(--yellow); */
   margin: 1px 0;
   padding: 0 0 2px 2px;
   border-radius: 2px;
   line-height: 1.2em;
   font-size: 0.8em;
+  overflow: hidden;
 }
 
 /* 
@@ -189,16 +206,44 @@ CALENDAR
  */
 
 .calendar {
-  margin: auto;
+  margin: 0 auto 25px auto;
 }
 
 .calendar-day {
-  min-width: 50px;
-  max-width: 50px;
+  min-width: 45px;
+  max-width: 45px;
   height: 100px;
   border-radius: 2px;
   border: 1px solid var(--misty-blue);
   vertical-align: top;
+}
+
+/* 
+
+COLORS
+
+ */
+
+/* --charcoal: #435861;
+ --light-grey: #e9e9e9;
+ --spearmint: #6e9277;
+ --misty-blue: #a0bec5;
+ --red: #f68c85;
+ --yellow: #fbb85a;
+ --green: #74c98d;
+ --blue: #6ba8df;
+ --shadow: 0px 0px 3px 1px #ddd; */
+
+.bg-red {
+  background-color: var(--red);
+}
+
+.bg-yellow {
+  background-color: var(--yellow);
+}
+
+.bg-green {
+  background-color: var(--green);
 }
 
 /* 
@@ -218,6 +263,7 @@ MISC (CLEARFIX, LINE-CLAMP, etc.)
 }
 
 .line-clamp {
+  overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;

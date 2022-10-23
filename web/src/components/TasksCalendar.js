@@ -1,6 +1,7 @@
 import { Fragment, useContext, useEffect } from "react";
 import { Link, Navigate } from "react-router-dom";
 import { CurrentUser } from "../contexts/CurrentUser";
+import { taskStatusGbColorClassName } from "../app/colors";
 import { trace } from "../nmx";
 import {
   getTaskData,
@@ -59,10 +60,10 @@ const TasksCalendar = () => {
 
   const daysTasks = (day) => {
     const t = taskData.map((task, i) => {
-      const createdOn = new Date(task.createdAt);
+      const createdOn = new Date(task.taskDate);
       return createdOn.getDate() === day ? (
         <Link key={`${day}-${i}`} to={`/details/${task.uid}`}>
-          <div className="task-calendar-day line-clamp">{task.name}</div>
+          <div className={`task-calendar-day line-clamp ${taskStatusGbColorClassName(task)}`}>{task.name}</div>
         </Link>
       ) : null;
     });

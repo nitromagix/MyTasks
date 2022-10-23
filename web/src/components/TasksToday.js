@@ -1,5 +1,5 @@
 import { Fragment, useContext, useEffect } from "react";
-import { Link, Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { CurrentUser } from "../contexts/CurrentUser";
 import {
@@ -7,7 +7,8 @@ import {
   getTaskDataThunk,
   updateTaskDataThunk,
 } from "../app/taskSlice";
-import { trace } from "../nmx";
+
+import { taskStatusGbColorClassName } from "../app/colors";
 
 const TasksToday = () => {
   const userContext = useContext(CurrentUser);
@@ -23,13 +24,30 @@ const TasksToday = () => {
   }, []);
 
   const taskView = taskData.map((task, i) => {
+
+    const taskDate = new Date(task.taskDate)
+    if (taskDate > Date.now())
+      return null;
     return (
-      <div key={task.taskId} className="task-today">
-        <div className="task-today-content ">
-          <h3>{task.name}</h3>
-          <p className="line-clamp">{task.description}</p>
+      <Link key={i} to={`/details/${task.uid}`}>
+        <div className="task">
+          <table>
+            <tbody>
+              <tr>
+                <td
+                  className={`task-status ${taskStatusGbColorClassName(task)}`}
+                ></td>
+                <td>
+                  <div className="task-content ">
+                    <h3 className="line-clamp">{task.name}</h3>
+                    <p className="line-clamp">{task.description}</p>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
-      </div>
+      </Link>
     );
   });
 
