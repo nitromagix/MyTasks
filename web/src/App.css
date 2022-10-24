@@ -313,6 +313,16 @@ NAVACTIONS
   /* border: 1px solid salmon; */
 }
 
+.nav-actions-back > img {
+  width:30px;
+  height:30px;
+  margin-left:20px;
+}
+
+.nav-actions-modal {
+  /* border: 1px solid salmon; */
+}
+
 /* 
 
 COLORS

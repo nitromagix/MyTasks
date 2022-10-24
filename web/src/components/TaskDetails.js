@@ -18,12 +18,19 @@ const TaskDetails = () => {
     fetchData();
   }, []);
 
-console.log(task)
+  console.log(task)
+  const localDate = (date) => {
+    const d = new Date(date);
+    return d.toLocaleDateString();
+  }
 
   return user && user.role === "user" ? (
     <Fragment>
       <h1>Task Details</h1>
-      {uid}
+      <h3>Name: {task.name}</h3>
+      <h3>Description: {task.description}</h3>
+      <h3>Task Date: {localDate(task.taskDate)}</h3>
+      {task.startedOn ? <h3>Started On: {localDate(task.startedOn)}</h3> : null}
     </Fragment>
   ) : (
     <Fragment></Fragment>

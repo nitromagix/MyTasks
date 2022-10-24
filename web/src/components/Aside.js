@@ -9,8 +9,7 @@ const Aside = () => {
   return user && user.role === "user" ? (
     <Fragment>
       <aside>
-        <strong>Labels</strong>
-        <div style={{height:200}}>contextual controls</div>
+        <div style={{height:200}}></div>
       </aside>
     </Fragment>
   ) : (
