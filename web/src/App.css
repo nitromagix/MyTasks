@@ -198,6 +198,18 @@ TASK
   overflow: hidden;
 }
 
+.task-details{
+  margin: 10px;
+  padding: 5px;
+  border: 1px solid var(--misty-blue);
+  border-radius: 3px;
+}
+
+.task-details h3>span {
+  color:var(--charcoal);
+}
+
+
 /* 
 
 CALENDAR

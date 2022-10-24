@@ -1,7 +1,7 @@
 import { Fragment } from "react";
 import { Link } from "react-router-dom";
 
-import { taskStatusBgColorClassName } from "../app/colors";
+import { taskStatusBgColorClassName } from "../app/taskStatus";
 import { dateToMMDDYYYY } from "../nmx";
 
 const TasksToday = (props) => {

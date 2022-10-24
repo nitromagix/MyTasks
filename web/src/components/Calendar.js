@@ -1,7 +1,7 @@
 import { Fragment, useCallback, useContext, useEffect, useState } from "react";
 import { Link, Navigate } from "react-router-dom";
 import { CurrentUser } from "../contexts/CurrentUser";
-import { taskStatusBgColorClassName } from "../app/colors";
+import { taskStatusBgColorClassName } from "../app/taskStatus";
 import { trace } from "../nmx";
 
 import moment from "moment";
