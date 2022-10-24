@@ -7,8 +7,8 @@ const TasksKanban = () => {
 
   const buildKanban = () => {
     return (
-      <div className="kanban">
-        <div className="kanban-todo">
+      <div className="task-kanban">
+        <div className="task-kanban-column">
           <h3>ToDo</h3>
           <div>
             <h4>Task 1</h4>
@@ -17,7 +17,7 @@ const TasksKanban = () => {
             <h4>Task 2</h4>
           </div>
         </div>
-        <div className="kanban-inprogress">
+        <div className="task-kanban-column">
           <h3>In Progress</h3>
           <div>
             <h4>Task 3</h4>
@@ -26,7 +26,7 @@ const TasksKanban = () => {
             <h4>Task 4</h4>
           </div>
         </div>
-        <div className="kanban-completed">
+        <div className="task-kanban-column">
           <h3>Completed</h3>
           <div>
             <h4>Task 5</h4>
