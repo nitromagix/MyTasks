@@ -4,11 +4,13 @@ import { createSlice } from "@reduxjs/toolkit";
 
 import API_URL from "./api";
 
+const now = new Date(Date.now());
+
 const initialState = {
   taskData: [],
 };
 
-export const taskSlice = createSlice({
+export const tasksSlice = createSlice({
   name: "task",
   initialState,
   reducers: {
@@ -27,11 +29,21 @@ export const taskSlice = createSlice({
   },
 });
 
-export const { setTaskData, addTask, updateTask } = taskSlice.actions;
+export const { setTaskData, addTask, updateTask } = tasksSlice.actions;
 
-export const getTaskData = (state) => state.task.taskData;
+export const getTasks = (state) => state.task.taskData;
 
-export const getTaskDataThunk = async (dispatch, getState) => {
+export const getTodaysTasks = (state) => state.task.taskData.filter((task) => {
+  const taskDate = new Date(task.taskDate);
+  return (
+    taskDate.getMonth() === now.getMonth() &&
+    taskDate.getDate() === now.getDate()
+  );
+});
+
+
+
+export const getTasksDataThunk = async (dispatch, getState) => {
   const requestOptions = {
     method: "GET",
     headers: {
@@ -119,4 +131,4 @@ export const updateTaskDataThunk = (data) => {
   };
 };
 
-export default taskSlice.reducer;
+export default tasksSlice.reducer;

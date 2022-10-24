@@ -32,7 +32,7 @@ function LoginForm() {
       setCurrentUser(responseJson.user);
       // console.log(responseJson.token)
       localStorage.setItem("token", responseJson.token);
-      navigate("/today");
+      navigate("/all");
     } else {
       setErrorMessage(responseJson.message);
     }

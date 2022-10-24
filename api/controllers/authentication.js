@@ -36,7 +36,7 @@ router.get("/token", async (req, res) => {
         const dec = jwt.decode(process.env.TOKEN_SECRET, token);
 
         const { uid } = dec.value;
-        console.log(uid)
+        // console.log(uid)
         const user = await User.findOne({
           where: { uid: uid },
         });

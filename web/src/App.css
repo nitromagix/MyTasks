@@ -253,9 +253,23 @@ CALENDAR
 
 /* 
 
-LOG IN / LOG OUT / PROFILE
+LOGO/ LOG IN / LOG OUT / PROFILE
 
  */
+
+.logo-image {
+  height: 25px;
+  margin-top: 5px;
+  margin-left: 7px;
+}
+
+.logo {
+  color: white;
+  margin-top: 6px;
+  margin-left: 5px;
+  font-weight: bold;
+  font-size: large;
+}
 
 .log-in-out-profile {
   margin-top: 8px;

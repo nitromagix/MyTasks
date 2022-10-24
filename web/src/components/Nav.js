@@ -14,7 +14,7 @@ const Nav = () => {
           <Link to="/">Dashboard</Link>
         </li> */}
           <li>
-            <Link to="/today">Today</Link>
+            <Link to="/all">All Tasks</Link>
           </li>
           <li>
             <Link to="/calendar">Calendar</Link>
@@ -22,9 +22,7 @@ const Nav = () => {
           <li>
             <Link to="/kanban">Kanban</Link>
           </li>
-          <li>
-            <Link to="/all">All Tasks</Link>
-          </li>
+
         </ul>
       </div>
     </nav>

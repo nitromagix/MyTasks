@@ -16,10 +16,25 @@ router.post("/", async (req, res) => {
     if (!req.body.userId) {
       req.body.userId = id;
     }
-    console.log(req.body);
-    const task = await Task.create(req.body);
-    res.json(task);
+    if (req.body.taskDate) {
+      const taskDate = new Date(Date.parse(req.body.taskDate));
+      const timezoneDate = new Date(
+        taskDate.toLocaleString("en-US", {
+          timeZone: "America/Los_Angeles",
+        })
+      );
+      // const tzDate = new Date(timezoneDate);
+      const fixedDate = new Date(
+        timezoneDate.getFullYear(),
+        timezoneDate.getMonth(),
+        timezoneDate.getDate() + 1
+      );
+      // console.log(fixedDate);
+      req.body.taskDate = fixedDate;
+    }
   }
+  const task = await Task.create(req.body);
+  res.json(task);
 });
 
 router.get("/", async (req, res) => {
@@ -30,6 +45,7 @@ router.get("/", async (req, res) => {
       where: {
         userId: id,
       },
+      order: [["taskDate", "ASC"]],
     });
 
     res.json(tasks);

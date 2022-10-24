@@ -1,13 +1,13 @@
 //
 
-import React, { useContext, useState } from "react";
+import React, { Fragment, useContext, useState } from "react";
 import Modal from "react-modal";
 import { useNavigate } from "react-router";
 import { CurrentUser } from "../contexts/CurrentUser";
 
 import pencil from "../add_task.png";
 import { useDispatch, useSelector } from "react-redux";
-import { addTaskDataThunk } from "../app/taskSlice";
+import { addTaskDataThunk } from "../app/tasksSlice";
 
 Modal.setAppElement("#root");
 
@@ -31,8 +31,7 @@ function TaskCreateModal(props) {
   const [task, setTask] = useState({
     name: "",
     description: "",
-    startOn: "",
-    completedOn: "",
+    taskDate: "",
   });
 
   const [modalIsOpen, setIsOpen] = useState(false);
@@ -54,6 +53,7 @@ function TaskCreateModal(props) {
       addTaskDataThunk({
         name: formData.name.value,
         description: formData.description.value,
+        taskDate: formData.taskDate.value,
       })
     );
     closeModal();
@@ -61,7 +61,7 @@ function TaskCreateModal(props) {
     navigate("/today");
   }
 
-  return (
+  return user && user.role === "user" ? (
     <div className="modal-edit-icon clearfix">
       <img src={pencil} alt="edit" onClick={openModal} />
       <Modal
@@ -124,6 +124,24 @@ function TaskCreateModal(props) {
                       name="description"
                     />
                   </div>
+                  <div className="form-row">
+                    <label className="form-label" htmlFor="taskDate">
+                      Date
+                    </label>
+                  </div>
+                  <div className="form-row">
+                    <input
+                      type="date"
+                      required
+                      // value=""
+                      onChange={(e) =>
+                        setTask({ ...task, taskDate: e.target.value })
+                      }
+                      className="form-control"
+                      id="taskDate"
+                      name="taskDate"
+                    />
+                  </div>
                 </div>
                 {/* <div className="form-group">
             <label htmlFor="pic">Place Picture</label>
@@ -180,6 +198,8 @@ function TaskCreateModal(props) {
         </div>
       </Modal>
     </div>
+  ) : (
+    <Fragment></Fragment>
   );
 }
 

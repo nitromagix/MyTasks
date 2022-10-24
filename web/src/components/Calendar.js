@@ -1,7 +1,7 @@
 import { Fragment, useCallback, useContext, useEffect, useState } from "react";
 import { Link, Navigate } from "react-router-dom";
 import { CurrentUser } from "../contexts/CurrentUser";
-import { taskStatusGbColorClassName } from "../app/colors";
+import { taskStatusBgColorClassName } from "../app/colors";
 import { trace } from "../nmx";
 
 import moment from "moment";
@@ -13,7 +13,6 @@ const Calendar = (props) => {
 
   useEffect(() => {
     setData(props.moment);
-    console.log("Calendar useEffect");
   }, [props.moment]);
 
   const taskData = props.taskData;
@@ -53,11 +52,12 @@ const Calendar = (props) => {
 
   const daysTasks = (day) => {
     const t = taskData.map((task, i) => {
-      const createdOn = new Date(task.taskDate);
-      return createdOn.getMonth() === moment(calendarMoment).month() && createdOn.getDate() === day ? (
+      const taskDate = new Date(task.taskDate);
+      console.log(taskDate)
+      return taskDate.getMonth() === moment(calendarMoment).month() && taskDate.getDate() === day ? (
         <Link key={`${day}-${i}`} to={`/details/${task.uid}`}>
           <div
-            className={`task-calendar-day line-clamp ${taskStatusGbColorClassName(
+            className={`task-calendar-day line-clamp ${taskStatusBgColorClassName(
               task
             )}`}
           >
