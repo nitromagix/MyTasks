@@ -1,12 +1,24 @@
-import { Fragment, useContext } from "react";
+import { Fragment, useContext, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, Navigate, useParams } from "react-router-dom";
 import { CurrentUser } from "../contexts/CurrentUser";
+import { getTask, getTaskDataThunk } from "../app/taskSlice";
 
 const TaskDetails = () => {
   const userContext = useContext(CurrentUser);
   const user = userContext.currentUser;
+  const dispatch = useDispatch();
+  const task = useSelector(getTask);
+  const { uid } = useParams();
 
-  const { uid } = useParams()
+  useEffect(() => {
+    async function fetchData() {
+      dispatch(getTaskDataThunk(uid));
+    }
+    fetchData();
+  }, []);
+
+console.log(task)
 
   return user && user.role === "user" ? (
     <Fragment>
@@ -15,7 +27,6 @@ const TaskDetails = () => {
     </Fragment>
   ) : (
     <Fragment></Fragment>
-
   );
 };
 

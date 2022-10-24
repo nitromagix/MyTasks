@@ -32,12 +32,18 @@ router.post("/", async (req, res) => {
       // console.log(fixedDate);
       req.body.taskDate = fixedDate;
     }
+
+    const task = await Task.create(req.body);
+    res.json(task);
   }
-  const task = await Task.create(req.body);
-  res.json(task);
 });
 
 router.get("/", async (req, res) => {
+  if (!req.currentUser) {
+    return res
+      .status(403)
+      .json({ message: "You are not allowed to add a task" });
+  }
   const id = req.currentUser?.uid;
 
   if (id) {
@@ -52,26 +58,26 @@ router.get("/", async (req, res) => {
   }
 });
 
-// router.get("/:placeId", async (req, res) => {
-//   let placeId = Number(req.params.placeId);
-//   if (isNaN(placeId)) {
-//     res.status(404).json({ message: `Invalid id "${placeId}"` });
-//   } else {
-//     const place = await Place.findOne({
-//       where: { placeId: placeId },
-//       include: {
-//         association: "comments",
-//         include: "author",
-//       },
-//     });
-//     if (!place) {
-//       res
-//         .status(404)
-//         .json({ message: `Could not find place with id "${placeId}"` });
-//     } else {
-//       res.json(place);
-//     }
-//   }
-// });
+router.get("/:taskId", async (req, res) => {
+  if (!req.currentUser) {
+    return res
+      .status(403)
+      .json({ message: "You are not allowed to add a task" });
+  }
+  const id = req.currentUser?.uid;
+
+  let taskId = req.params.taskId;
+  console.log(taskId);
+  const task = await Task.findOne({
+    where: [{ uid: taskId }, { user_id: id }],
+  });
+  if (!task) {
+    res
+      .status(404)
+      .json({ message: `Could not find task with id "${taskId}"` });
+  } else {
+    res.json(task);
+  }
+});
 
 module.exports = router;

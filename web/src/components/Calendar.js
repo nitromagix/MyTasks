@@ -53,7 +53,6 @@ const Calendar = (props) => {
   const daysTasks = (day) => {
     const t = taskData.map((task, i) => {
       const taskDate = new Date(task.taskDate);
-      console.log(taskDate)
       return taskDate.getMonth() === moment(calendarMoment).month() && taskDate.getDate() === day ? (
         <Link key={`${day}-${i}`} to={`/details/${task.uid}`}>
           <div

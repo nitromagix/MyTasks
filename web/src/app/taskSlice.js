@@ -7,11 +7,11 @@ import API_URL from "./api";
 const now = new Date(Date.now());
 
 const initialState = {
-  taskData: [],
+  taskData: {},
 };
 
-export const tasksSlice = createSlice({
-  name: "tasks",
+export const taskSlice = createSlice({
+  name: "task",
   initialState,
   reducers: {
     setTaskData: (state, action) => {
@@ -29,9 +29,9 @@ export const tasksSlice = createSlice({
   },
 });
 
-export const { setTaskData, addTask, updateTask } = tasksSlice.actions;
+export const { setTaskData, addTask, updateTask } = taskSlice.actions;
 
-export const getTasks = (state) => state.tasks.taskData;
+export const getTask = (state) => state.task.taskData;
 
 export const getTodaysTasks = (state) =>
   state.task.taskData.filter((task) => {
@@ -70,32 +70,6 @@ export const getTaskDataThunk = (id) => {
         console.error("There was an error!", error);
       });
   };
-};
-
-export const getTasksDataThunk = async (dispatch, getState) => {
-  const requestOptions = {
-    method: "GET",
-    headers: {
-      Authorization: `Bearer ${localStorage.getItem("token")}`,
-      "Content-Type": "application/json",
-    },
-  };
-
-  fetch(`${API_URL}/tasks`, requestOptions)
-    .then(async (response) => {
-      const res = await response.json();
-
-      if (!response.ok) {
-        const error = (res && res.message) || response.status;
-        console.log(error);
-        return Promise.reject(error);
-      }
-
-      dispatch(setTaskData(res));
-    })
-    .catch((error) => {
-      console.error("There was an error!", error);
-    });
 };
 
 export const addTaskDataThunk = (data) => {
@@ -160,4 +134,4 @@ export const updateTaskDataThunk = (data) => {
   };
 };
 
-export default tasksSlice.reducer;
+export default taskSlice.reducer;
