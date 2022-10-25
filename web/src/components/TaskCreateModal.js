@@ -86,7 +86,7 @@ function TaskCreateModal(props) {
           <h1>Create New Task</h1>
           <form onSubmit={modalSubmit}>
             <div>
-              <div style={{ width: 350 }}>
+              <div className="form-content">
                 {/* <form onSubmit={handleSubmit}> */}
                 <div className="form-group">
                   <div className="form-row">
@@ -143,56 +143,9 @@ function TaskCreateModal(props) {
                     />
                   </div>
                 </div>
-                {/* <div className="form-group">
-            <label htmlFor="pic">Place Picture</label>
-            <input
-              value=""
-              onChange={(e) => setTask({ ...task, pic: e.target.value })}
-              className="form-control"
-              id="pic"
-              name="pic"
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="city">City</label>
-            <input
-              value=""
-              onChange={(e) => setTask({ ...task, city: e.target.value })}
-              className="form-control"
-              id="city"
-              name="city"
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="state">State</label>
-            <input
-              value=""
-              onChange={(e) => setTask({ ...task, state: e.target.value })}
-              className="form-control"
-              id="state"
-              name="state"
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="cuisines">Cuisines</label>
-            <input
-              value=""
-              onChange={(e) => setTask({ ...task, cuisines: e.target.value })}
-              className="form-control"
-              id="cuisines"
-              name="cuisines"
-              required
-            />
-          </div> */}
-                {/* <br />
-          <button type="submit">Save</button>
-          <button type="reset">Cancel</button>
-          <br /> */}
-                {/* <input className="btn btn-primary" type="submit" value="Add Place" /> */}
-                {/* </form> */}
               </div>
-              <button type="submit">Save</button>
-              <button onClick={closeModal}>Cancel</button>
+              <button className="button-link" type="submit">Save</button>
+              <button className="button-link" onClick={closeModal}>Cancel</button>
             </div>
           </form>
         </div>

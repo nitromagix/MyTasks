@@ -7,7 +7,7 @@ const Footer = () => {
 
   return user && user.role === "user" ? (
     <Fragment>
-      <footer>footer contents</footer>
+      <footer>Nitromagix 2022</footer>
     </Fragment>
   ) : (
     <Fragment>

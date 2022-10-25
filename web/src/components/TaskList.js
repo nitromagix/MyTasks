@@ -37,7 +37,6 @@ const TasksToday = (props) => {
 
   return (
     <Fragment>
-      {/* <h1>Today's Tasks - {dateToMMDDYYYY(props.now)}</h1> */}
       <h1>All Tasks</h1>
       {taskView}
     </Fragment>

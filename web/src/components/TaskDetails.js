@@ -19,7 +19,6 @@ const TaskDetails = () => {
     fetchData();
   }, []);
 
-  console.log(task);
   const localDate = (date) => {
     const d = new Date(date);
     return d.toLocaleDateString();
@@ -43,7 +42,7 @@ const TaskDetails = () => {
             <span>Started On</span>: {localDate(task.startedOn)}
           </h3>
         ) : null}
-        <div className={`${taskStatusBgColorClassName(task)}`}>
+        <div className={`border-radius-2 ${taskStatusBgColorClassName(task)}`}>
           <h3>
             <span>Status</span>: {taskStatus(task)}
           </h3>

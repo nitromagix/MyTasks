@@ -54,7 +54,7 @@ const Calendar = (props) => {
     const t = taskData.map((task, i) => {
       const taskDate = new Date(task.taskDate);
       return taskDate.getMonth() === moment(calendarMoment).month() && taskDate.getDate() === day ? (
-        <Link key={`${day}-${i}`} to={`/details/${task.uid}`}>
+        <Link className="task-calendar-link" key={`${day}-${i}`} to={`/details/${task.uid}`}>
           <div
             className={`task-calendar-day line-clamp ${taskStatusBgColorClassName(
               task

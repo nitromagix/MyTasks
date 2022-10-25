@@ -9,7 +9,7 @@ const taskStatusBgColorClassName = (task) => {
 const taskStatus = (task) => {
   if (task.startedOn && task.completedOn) return "Completed";
   if (task.startedOn) return "In Progress";
-  return "Not Started";
+  return "To Do";
 }
 
 export { taskStatusBgColorClassName, taskStatus };

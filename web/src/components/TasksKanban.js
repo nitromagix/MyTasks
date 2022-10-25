@@ -1,48 +1,26 @@
-import { Fragment, useContext } from "react";
+import { Fragment, useContext, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { CurrentUser } from "../contexts/CurrentUser";
+import { getTasks, getTasksDataThunk } from "../app/tasksSlice";
+import Kanban from "./Kanban";
 
 const TasksKanban = () => {
   const userContext = useContext(CurrentUser);
+  const dispatch = useDispatch();
   const user = userContext.currentUser;
+  const tasks = useSelector(getTasks);
 
-  const buildKanban = () => {
-    return (
-      <div className="task-kanban">
-        <div className="task-kanban-column">
-          <h3>ToDo</h3>
-          <div>
-            <h4>Task 1</h4>
-          </div>
-          <div>
-            <h4>Task 2</h4>
-          </div>
-        </div>
-        <div className="task-kanban-column">
-          <h3>In Progress</h3>
-          <div>
-            <h4>Task 3</h4>
-          </div>
-          <div>
-            <h4>Task 4</h4>
-          </div>
-        </div>
-        <div className="task-kanban-column">
-          <h3>Completed</h3>
-          <div>
-            <h4>Task 5</h4>
-          </div>
-          <div>
-            <h4>Task 6</h4>
-          </div>
-        </div>
-      </div>
-    );
-  };
+  useEffect(() => {
+    async function fetchData() {
+      dispatch(getTasksDataThunk);
+    }
+    fetchData();
+  }, []);
 
   return user && user.role === "user" ? (
     <Fragment>
       <h1>Tasks Kanban</h1>
-      {buildKanban()}
+      <Kanban data={tasks} />
     </Fragment>
   ) : (
     <Fragment></Fragment>
