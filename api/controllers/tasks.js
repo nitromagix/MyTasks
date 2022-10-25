@@ -18,7 +18,7 @@ const fixDate = (date) => {
     timezoneDate.getDate() + 1
   );
   return fixedDate;
-}
+};
 
 router.post("/", async (req, res) => {
   if (!req.currentUser) {
@@ -99,7 +99,7 @@ router.get("/:taskId", async (req, res) => {
   const userId = req.currentUser?.uid;
 
   let taskId = req.params.taskId;
-  console.log(taskId);
+
   const task = await Task.findOne({
     where: [{ uid: taskId }, { user_id: userId }],
   });
