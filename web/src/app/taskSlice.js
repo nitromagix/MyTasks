@@ -17,14 +17,8 @@ export const taskSlice = createSlice({
     setTaskData: (state, action) => {
       state.taskData = action.payload;
     },
-    addTask: (state, action) => {
-      state.taskData.push(action.payload);
-    },
     updateTask: (state, action) => {
-      const editedTask = action.payload;
-      state.taskData = state.portfolioData.map((task, i) => {
-        return task.uid === editedTask.uid ? editedTask : task;
-      });
+      state.taskData = action.payload;
     },
   },
 });
@@ -116,9 +110,11 @@ export const updateTaskDataThunk = (data) => {
       body: JSON.stringify(taskData),
     };
 
-    fetch(`${API_URL}/tasks`, requestOptions)
+    fetch(`${API_URL}/tasks/${taskData.uid}`, requestOptions)
       .then(async (response) => {
         const res = await response.json();
+
+        console.log(res)
 
         if (!response.ok) {
           const error = (res && res.message) || response.status;
@@ -126,7 +122,7 @@ export const updateTaskDataThunk = (data) => {
           return Promise.reject(error);
         }
 
-        dispatch(updateTask(taskData));
+        dispatch(updateTask(res));
       })
       .catch((error) => {
         console.error("There was an error!", error);

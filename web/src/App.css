@@ -125,11 +125,12 @@ font-size: 17px;
   border-radius: 3px;
   text-transform: uppercase;
   color: var(--charcoal);
-  margin:5px
+  margin:5px;
+  box-shadow: var(--shadow);
 }
 .button-link:hover {
   background: #fff;
-  transition: 0.5s;
+  transition: 0.15s;
   color: #022f69;
 }
 

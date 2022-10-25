@@ -1,6 +1,7 @@
 import { createContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 import { getToken, isAuthenticated } from "../app/auth";
+import API_URL from "../app/api";
 
 export const CurrentUser = createContext();
 
@@ -12,7 +13,7 @@ function CurrentUserProvider({ children }) {
     const getLoggedInUser = async () => {
       if (isAuthenticated()) {
         const response = await fetch(
-          "http://localhost:3333/authentication/token",
+          `${API_URL}/authentication/token`,
           {
             headers: { Authorization: `Bearer ${getToken()}` },
           }

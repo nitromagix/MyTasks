@@ -4,6 +4,22 @@ const db = require("../models");
 
 const { Task } = db;
 
+const fixDate = (date) => {
+  const originalDate = new Date(Date.parse(date));
+  const timezoneDate = new Date(
+    originalDate.toLocaleString("en-US", {
+      timeZone: "America/Los_Angeles",
+    })
+  );
+  // const tzDate = new Date(timezoneDate);
+  const fixedDate = new Date(
+    timezoneDate.getFullYear(),
+    timezoneDate.getMonth(),
+    timezoneDate.getDate() + 1
+  );
+  return fixedDate;
+}
+
 router.post("/", async (req, res) => {
   if (!req.currentUser) {
     return res
@@ -11,26 +27,14 @@ router.post("/", async (req, res) => {
       .json({ message: "You are not allowed to add a task" });
   }
 
-  const id = req.currentUser?.uid;
-  if (id) {
+  const userId = req.currentUser?.uid;
+
+  if (userId) {
     if (!req.body.userId) {
-      req.body.userId = id;
+      req.body.userId = userId;
     }
     if (req.body.taskDate) {
-      const taskDate = new Date(Date.parse(req.body.taskDate));
-      const timezoneDate = new Date(
-        taskDate.toLocaleString("en-US", {
-          timeZone: "America/Los_Angeles",
-        })
-      );
-      // const tzDate = new Date(timezoneDate);
-      const fixedDate = new Date(
-        timezoneDate.getFullYear(),
-        timezoneDate.getMonth(),
-        timezoneDate.getDate() + 1
-      );
-      // console.log(fixedDate);
-      req.body.taskDate = fixedDate;
+      req.body.taskDate = fixDate(req.body.taskDate);
     }
 
     const task = await Task.create(req.body);
@@ -44,17 +48,45 @@ router.get("/", async (req, res) => {
       .status(403)
       .json({ message: "You are not allowed to add a task" });
   }
-  const id = req.currentUser?.uid;
+  const userId = req.currentUser?.uid;
 
-  if (id) {
+  if (userId) {
     const tasks = await Task.findAll({
       where: {
-        userId: id,
+        userId: userId,
       },
       order: [["taskDate", "ASC"]],
     });
 
     res.json(tasks);
+  }
+});
+
+router.put("/:taskId", async (req, res) => {
+  if (!req.currentUser) {
+    return res
+      .status(403)
+      .json({ message: "You are not allowed to edit places" });
+  }
+
+  const userId = req.currentUser?.uid;
+  let taskId = req.params.taskId;
+
+  if (!taskId) {
+    res.status(404).json({ message: `Invalid id "${taskId}"` });
+  } else {
+    const task = await Task.findOne({
+      where: [{ uid: taskId }, { user_id: userId }],
+    });
+    if (!task) {
+      res
+        .status(404)
+        .json({ message: `Could not find task with id "${taskId}"` });
+    } else {
+      Object.assign(task, req.body);
+      await task.save();
+      res.json(task);
+    }
   }
 });
 
@@ -64,12 +96,12 @@ router.get("/:taskId", async (req, res) => {
       .status(403)
       .json({ message: "You are not allowed to add a task" });
   }
-  const id = req.currentUser?.uid;
+  const userId = req.currentUser?.uid;
 
   let taskId = req.params.taskId;
   console.log(taskId);
   const task = await Task.findOne({
-    where: [{ uid: taskId }, { user_id: id }],
+    where: [{ uid: taskId }, { user_id: userId }],
   });
   if (!task) {
     res

@@ -58,7 +58,7 @@ function TaskCreateModal(props) {
     );
     closeModal();
     props.onSave(e);
-    navigate("/today");
+    navigate("/all");
   }
 
   return user && user.role === "user" ? (

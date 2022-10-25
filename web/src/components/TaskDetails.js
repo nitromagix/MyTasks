@@ -2,7 +2,12 @@ import { Fragment, useContext, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, Navigate, useParams } from "react-router-dom";
 import { CurrentUser } from "../contexts/CurrentUser";
-import { getTask, getTaskDataThunk } from "../app/taskSlice";
+import {
+  getTask,
+  updateTask,
+  getTaskDataThunk,
+  updateTaskDataThunk,
+} from "../app/taskSlice";
 import { taskStatus, taskStatusBgColorClassName } from "../app/taskStatus";
 
 const TaskDetails = () => {
@@ -22,6 +27,40 @@ const TaskDetails = () => {
   const localDate = (date) => {
     const d = new Date(date);
     return d.toLocaleDateString();
+  };
+
+  const taskStarted = () => {
+    const startDate = new Date(Date.now());
+    dispatch(
+      updateTaskDataThunk({
+        uid: task.uid,
+        startedOn: `${startDate.getFullYear()}-${startDate.getMonth()}-${startDate.getDate()}`,
+      })
+    );
+  };
+  const taskCompleted = () => {
+    const completedOn = new Date(Date.now());
+    dispatch(
+      updateTaskDataThunk({
+        uid: task.uid,
+        completedOn: `${completedOn.getFullYear()}-${completedOn.getMonth()}-${completedOn.getDate()}`,
+      })
+    );
+  };
+
+  const buildButtons = () => {
+    if (!task.startedOn)
+      return (
+        <button className="button-link" onClick={taskStarted}>
+          Start Task
+        </button>
+      );
+    if (task.startedOn && !task.completedOn)
+      return (
+        <button className="button-link" onClick={taskCompleted}>
+          Complete Task
+        </button>
+      );
   };
 
   return user && user.role === "user" ? (
@@ -47,6 +86,7 @@ const TaskDetails = () => {
             <span>Status</span>: {taskStatus(task)}
           </h3>
         </div>
+        <div>{buildButtons()}</div>
       </div>
     </Fragment>
   ) : (
