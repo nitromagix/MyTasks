@@ -34,7 +34,7 @@ const TaskDetails = () => {
     dispatch(
       updateTaskDataThunk({
         uid: task.uid,
-        startedOn: `${startDate.getFullYear()}-${startDate.getMonth()}-${startDate.getDate()}`,
+        startedOn: `${startDate.getFullYear()}-${startDate.getMonth() + 1}-${startDate.getDate()}`,
       })
     );
   };
@@ -43,7 +43,7 @@ const TaskDetails = () => {
     dispatch(
       updateTaskDataThunk({
         uid: task.uid,
-        completedOn: `${completedOn.getFullYear()}-${completedOn.getMonth()}-${completedOn.getDate()}`,
+        completedOn: `${completedOn.getFullYear()}-${completedOn.getMonth() + 1}-${completedOn.getDate()}`,
       })
     );
   };
@@ -79,6 +79,11 @@ const TaskDetails = () => {
         {task.startedOn ? (
           <h3>
             <span>Started On</span>: {localDate(task.startedOn)}
+          </h3>
+        ) : null}
+        {task.completedOn ? (
+          <h3>
+            <span>Completed On</span>: {localDate(task.completedOn)}
           </h3>
         ) : null}
         <div className={`border-radius-2 ${taskStatusBgColorClassName(task)}`}>

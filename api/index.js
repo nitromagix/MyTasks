@@ -10,6 +10,7 @@ const defineCurrentUser = require("./middleware/defineCurrentUser");
 const tasksController = require("./controllers/tasks");
 const usersController = require("./controllers/users");
 const authenticationController = require("./controllers/authentication");
+const path = require("path");
 
 const app = express();
 
@@ -19,6 +20,10 @@ app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 app.use(express.json());
 app.use(defineCurrentUser);
+
+if (process.env.NODE_ENV == "production") {
+  app.use(express.static(path.join(__dirname, "client", "build")));
+}
 
 // Controllers and Routes
 
