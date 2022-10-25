@@ -121,7 +121,7 @@ export const addTaskDataThunk = (data) => {
           return Promise.reject(error);
         }
 
-        dispatch(addTask(taskData));
+        dispatch(addTask(res));
       })
       .catch((error) => {
         console.error("There was an error!", error);

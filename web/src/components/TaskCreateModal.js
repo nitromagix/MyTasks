@@ -7,7 +7,7 @@ import { CurrentUser } from "../contexts/CurrentUser";
 
 import pencil from "../add_task.png";
 import { useDispatch, useSelector } from "react-redux";
-import { addTaskDataThunk } from "../app/tasksSlice";
+import { addTaskDataThunk, getTasksDataThunk } from "../app/tasksSlice";
 
 Modal.setAppElement("#root");
 
