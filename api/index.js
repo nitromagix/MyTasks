@@ -10,16 +10,18 @@ const defineCurrentUser = require("./middleware/defineCurrentUser");
 const tasksController = require("./controllers/tasks");
 const usersController = require("./controllers/users");
 const authenticationController = require("./controllers/authentication");
+const testController = require("./controllers/test");
 const path = require("path");
 
 const app = express();
 
-app.use(cors());
+
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 app.use(express.json());
 app.use(defineCurrentUser);
+app.use(cors());
 
 if (process.env.NODE_ENV == "production") {
   app.use(express.static(path.join(__dirname, "client", "build")));
@@ -30,6 +32,7 @@ if (process.env.NODE_ENV == "production") {
 app.use("/tasks", tasksController);
 app.use("/users", usersController);
 app.use("/authentication", authenticationController);
+app.use("/test", testController);
 
 app.get("/", async (req, res) => {
   res.status(200).json({ mytasks: "home" });
