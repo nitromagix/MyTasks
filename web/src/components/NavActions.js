@@ -5,7 +5,7 @@ import { Fragment, useContext } from "react";
 import { CurrentUser } from "../contexts/CurrentUser";
 import EditModal from "./EditModal";
 import CreateTasksModal from "./TaskCreateModal";
-import backImage from "../back2.png";
+// import backImage from "../back2.png";
 
 function NavButtons() {
   const userContext = useContext(CurrentUser);
@@ -18,7 +18,8 @@ function NavButtons() {
     return user && user.role === "user" ? (
       <div className="nav-actions clearfix">
         <div className="nav-actions-back float-left">
-          <img src={backImage} alt="back" onClick={() => navigate(-1)} />
+        <button className="nav-actions-back-button button-link" onClick={() => navigate(-1)}>{"\u25C2"}</button>
+          {/* <img src={backImage} alt="back" onClick={() => navigate(-1)} /> */}
           {/* <button onClick={() => navigate(-1)}>Back</button> */}
         </div>
         <div className="nav-actions-modal float-right">

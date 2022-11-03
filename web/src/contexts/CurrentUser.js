@@ -1,7 +1,7 @@
 import { createContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router";
-import { getToken, isAuthenticated } from "../app/auth";
 import API_URL from "../app/api";
+import { getToken, isAuthenticated } from "../app/auth";
 
 export const CurrentUser = createContext();
 
@@ -14,16 +14,16 @@ function CurrentUserProvider({ children }) {
       if (isAuthenticated()) {
         const response = await fetch(
           `${API_URL}/authentication/token`,
+          // `${process.env.REACT_APP_SERVER_URL}/authentication/token`,
           {
             headers: { Authorization: `Bearer ${getToken()}` },
           }
         );
         const user = await response.json();
         setCurrentUser(user);
-      }
-      else{
-        console.log("not authenticated")
-        navigate("/login")
+      } else {
+        console.log("not authenticated");
+        navigate("/login");
       }
     };
     getLoggedInUser();

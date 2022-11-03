@@ -7,13 +7,15 @@ import { setExperienceData } from "./experienceSlice";
 import { setPortfolioData } from "./portfolioSlice";
 import { setAboutData } from "./aboutSlice";
 import { setEducationData } from "./educationSlice";
-
 import API_URL from "./api";
+
+
 
 export const fetchDataThunk = async (dispatch, getState) => {
 
   // let state = getState();
   const response = await fetch(API_URL);
+  // const response = await fetch(process.env.REACT_APP_SERVER_URL);
   const responseJson = await response.json();
   // console.log(responseJson);
 

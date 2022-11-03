@@ -1,7 +1,6 @@
 //
 
 import { createSlice } from "@reduxjs/toolkit";
-
 import API_URL from "./api";
 
 const now = new Date(Date.now());
@@ -55,6 +54,7 @@ export const getTaskDataThunk = (id) => {
     };
 
     fetch(`${API_URL}/tasks/${taskId}`, requestOptions)
+    // fetch(`${process.env.REACT_APP_SERVER_URL}/tasks/${taskId}`, requestOptions)
       .then(async (response) => {
         const res = await response.json();
 
@@ -82,6 +82,7 @@ export const getTasksDataThunk = async (dispatch, getState) => {
   };
 
   fetch(`${API_URL}/tasks`, requestOptions)
+  // fetch(`${process.env.REACT_APP_SERVER_URL}/tasks`, requestOptions)
     .then(async (response) => {
       const res = await response.json();
 
@@ -112,6 +113,7 @@ export const addTaskDataThunk = (data) => {
     };
 
     fetch(`${API_URL}/tasks`, requestOptions)
+    // fetch(`${process.env.REACT_APP_SERVER_URL}/tasks`, requestOptions)
       .then(async (response) => {
         const res = await response.json();
 
@@ -143,6 +145,7 @@ export const updateTaskDataThunk = (data) => {
     };
 
     fetch(`${API_URL}/tasks`, requestOptions)
+    // fetch(`${process.env.REACT_APP_SERVER_URL}/tasks`, requestOptions)
       .then(async (response) => {
         const res = await response.json();
 

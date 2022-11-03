@@ -1,7 +1,6 @@
 //
 
 import { createSlice } from "@reduxjs/toolkit";
-
 import API_URL from "./api";
 
 const initialState = {
@@ -43,7 +42,8 @@ export const updatePortfolioDataThunk = (data) => {
       body: JSON.stringify(portfolioData),
     };
 
-    fetch(`${API_URL}project/${portfolioData._id}`, requestOptions)
+    fetch(`${API_URL}/project/${portfolioData._id}`, requestOptions)
+    // fetch(`${process.env.REACT_APP_SERVER_URL}/project/${portfolioData._id}`, requestOptions)
       .then(async (response) => {
         const res = await response.json();
 
@@ -72,6 +72,7 @@ export const addProjectDataThunk = (data) => {
     };
 
     fetch(`${API_URL}/project/`, requestOptions)
+    // fetch(`${process.env.REACT_APP_SERVER_URL}/project/`, requestOptions)
       .then(async (response) => {
         const res = await response.json();
 
@@ -100,6 +101,7 @@ export const updateProjectDataThunk = (data) => {
     };
 
     fetch(API_URL, requestOptions)
+    // fetch(process.env.REACT_APP_SERVER_URL, requestOptions)
       .then(async (response) => {
         const res = await response.json();
 

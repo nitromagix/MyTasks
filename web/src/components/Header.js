@@ -16,11 +16,11 @@ const Header = () => {
   return user && user.role === "user" ? (
     <Fragment>
       <header className="clearfix">
-        <img
+        {/* <img
           src={process.env.PUBLIC_URL + "/favicon-32x32.png"}
           alt="logo"
           className="logo-image float-left"
-        />
+        /> */}
         <div className="logo float-left">MyTasks</div>
         <div className="log-in-out-profile float-right">
           <span>Hello, {user.firstName}</span> |{" "}

@@ -58,12 +58,13 @@ function TaskCreateModal(props) {
     );
     closeModal();
     props.onSave(e);
-    navigate("/all");
+    // navigate("/all");
   }
 
   return user && user.role === "user" ? (
     <div className="modal-edit-icon clearfix">
-      <img src={pencil} alt="edit" onClick={openModal} />
+      <button className="modal-create-task-button button-link" onClick={openModal}>+</button>
+      {/* <img src={pencil} alt="edit" onClick={openModal} /> */}
       <Modal
         isOpen={modalIsOpen}
         onAfterOpen={afterOpenModal}
